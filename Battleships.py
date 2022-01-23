@@ -189,7 +189,7 @@ fontName = pygame.font.match_font('arial')
 shipImg = loadify('resources/ShipSprite02.png')
 cloudImg = loadify('resources/Cloud.png')
 background = loadify('resources/Waves.jpg')
-background = pygame.transform.scale(background, (infoObject.current_w, background.get_height()))
+background = pygame.transform.scale(background, (WIDTH, background.get_height()))
 bkgdY = HEIGHT
 
 # Animated objects
@@ -214,17 +214,14 @@ lives1 = loadify('resources/PlayerSprite02.png')
 
 # Screens that will be shown after using the showGameOver function
 startScreen = loadify('resources/StartScreen.jpg')
-startScreen = pygame.transform.scale(startScreen, (infoObject.current_w, infoObject.current_h))
+startScreen = pygame.transform.scale(startScreen, (WIDTH, HEIGHT))
 overScreen = loadify('resources/GameOverScreen.jpg')
-overScreen = pygame.transform.scale(overScreen, (infoObject.current_w, infoObject.current_h))
+overScreen = pygame.transform.scale(overScreen, (WIDTH, HEIGHT))
 
 # Sounds and music
 exploSound = pygame.mixer.Sound('resources/8bit_bomb_explosion.wav')
-pygame.mixer.Sound.set_volume(exploSound, 0.3)
 coinSound = pygame.mixer.Sound('resources/coin01.wav')
-pygame.mixer.Sound.set_volume(coinSound, 0.05)
 pygame.mixer.music.load('resources/little town - orchestral.ogg')
-pygame.mixer.music.set_volume(0.05)
 
 # Misc
 villainLastUpdate = pygame.time.get_ticks()
@@ -252,8 +249,8 @@ while running:
 
     # Scrolling background        
     mainSurface.fill(blue)
-    relY = bkgdY % background.get_rect().width
-    mainSurface.blit(background,(0, relY - background.get_rect().width))
+    relY = bkgdY % background.get_rect().height
+    mainSurface.blit(background,(0, relY - background.get_rect().height))
     if relY < HEIGHT:
         mainSurface.blit(background, (0, relY))
     bkgdY += 0.5
@@ -272,12 +269,12 @@ while running:
 
     # Spawn enemy ships every 1.5 seconds
     if spawn(villainLastUpdate, 1500):
-        objCollectionMid.append(Villain(random.randrange(infoObject.current_w - 75), -200, 4, random.uniform(0.4, 0.6), shipImg, True, False))
+        objCollectionMid.append(Villain(random.randrange(WIDTH - 75), -200, 4, random.uniform(0.4, 0.6), shipImg, True, False))
         villainLastUpdate = pygame.time.get_ticks()
     # Spawn coins and clouds every 3 seconds
     if spawn(otherLastUpdate, 3000):
-        objCollectionTop.append(Cloud(random.randrange(infoObject.current_w - 100), -100, 1, (150, 80), cloudImg, False, False))
-        objCollectionMid.append(Coin(random.randrange(infoObject.current_w - 30), -100, 2, coinImg, False, True))
+        objCollectionTop.append(Cloud(random.randrange(WIDTH - 100), -100, 1, (150, 80), cloudImg, False, False))
+        objCollectionMid.append(Coin(random.randrange(WIDTH - 30), -100, 2, coinImg, False, True))
         otherLastUpdate = pygame.time.get_ticks()
 
     # Check objects in the middle collection
