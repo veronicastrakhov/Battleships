@@ -13,7 +13,6 @@ sudo apt-get install git pygame
 '''
 
 Make sure that Python3 is used for /usr/bin/python
-
 '''sh
 sudo ln -s -f /usr/bin/python3 /usr/bin/python
 '''
