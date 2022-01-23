@@ -8,20 +8,20 @@ Battleships is an arcade game created in Pygame. Your objective is to collect as
 
 Install Git and Pygame as well as all dependencies
 
-'''sh
+```sh
 sudo apt-get install git pygame
-'''
+```
 
 Make sure that Python3 is used for /usr/bin/python
-'''sh
+```sh
 sudo ln -s -f /usr/bin/python3 /usr/bin/python
-'''
+```
 
 Download Battleships by either cloning the repository
 
-'''sh
+```sh
 git clone https://github.com/veronicastrakhov/Battleships.git
-'''
+```
 
 or by downloading and unpacking its ZIP archive from https://github.com/veronicastrakhov/Battleships/archive/refs/heads/master.zip
 
